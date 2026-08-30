@@ -1,0 +1,36 @@
+# ---------------------------------------------------------------------------
+# NEVER commit game data. This repository must stay ROM-free.
+# 絕對不要提交遊戲資料，本專案必須保持不含 ROM。
+# ---------------------------------------------------------------------------
+*.wsc
+*.ws
+*.sav
+*.srm
+*.ieeprom
+*.eeprom
+
+# Third-party documents (e.g. other people's FAQs / translations of them)
+# 第三方文件（例如他人攻略及其翻譯）
+guide.txt
+guide_*.txt
+
+# ---------------------------------------------------------------------------
+# Build output - the .exe is published as a GitHub Release asset, not committed
+# 打包產物 - exe 以 GitHub Release 發布，不進版控
+# ---------------------------------------------------------------------------
+build/
+dist/
+*.spec
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*~

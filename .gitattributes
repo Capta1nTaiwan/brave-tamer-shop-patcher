@@ -1,0 +1,13 @@
+# Normalise text files in the repository, check out with native line endings.
+* text=auto
+
+# Windows batch files must keep CRLF or cmd.exe can misparse labels and blocks.
+*.bat text eol=crlf
+
+# Keep the end-user readme CRLF so Notepad shows it correctly.
+*.txt text eol=crlf
+
+# Source and docs are fine either way.
+*.py  text
+*.pyw text
+*.md  text
