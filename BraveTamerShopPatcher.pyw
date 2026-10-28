@@ -102,7 +102,7 @@ STRINGS = {
         "r_size_ok": "4 MB",
         "r_header_ok": "Bandai / WonderSwan Color / Game ID 0x1D",
         "r_header_bad": "publisher {p:02X} color {c:02X} id {g:02X}（與預期不符）",
-        "r_sum_bad": "{stored:04X}（實際 {calc:04X}）不一致 — ROM 可能已損毀",
+        "r_sum_bad": "{stored:04X}（實際 {calc:04X}）不一致 — 可能是漢化版 ROM，修改時會自動修正",
         "r_sum_known": "{s:04X} — 未修改的原版 ROM",
         "r_sum_other": "{s:04X} — 檢查碼正確，但不是已知的原版（可能已被改過）",
         "r_card_missing": "未找到（X={x}）",
@@ -177,7 +177,8 @@ STRINGS = {
         "r_size_ok": "4 MB",
         "r_header_ok": "Bandai / WonderSwan Color / Game ID 0x1D",
         "r_header_bad": "publisher {p:02X} color {c:02X} id {g:02X} (does not match)",
-        "r_sum_bad": "{stored:04X} (actual {calc:04X}) mismatch - the ROM may be corrupted",
+        "r_sum_bad": ("{stored:04X} (actual {calc:04X}) mismatch - likely a translated ROM; "
+                      "it will be fixed when patching"),
         "r_sum_known": "{s:04X} - unmodified original ROM",
         "r_sum_other": "{s:04X} - valid, but not the known original (may already be modified)",
         "r_card_missing": "not found (X={x})",
@@ -284,9 +285,11 @@ def verify_rom(rom, S):
     calc = sum(rom[:-2]) & 0xFFFF
     stored = struct.unpack_from("<H", rom, len(rom) - 2)[0]
     if calc != stored:
-        rows.append((S["v_checksum"], S["r_sum_bad"].format(stored=stored, calc=calc), "bad"))
-        return False, rows
-    if stored == KNOWN_CHECKSUM:
+        # Fan translations often leave the header checksum stale.  The console
+        # never checks it and patch_rom() recomputes it, so this is only a
+        # warning; the structural checks below decide whether it is patchable.
+        rows.append((S["v_checksum"], S["r_sum_bad"].format(stored=stored, calc=calc), "warn"))
+    elif stored == KNOWN_CHECKSUM:
         rows.append((S["v_checksum"], S["r_sum_known"].format(s=stored), "ok"))
     else:
         rows.append((S["v_checksum"], S["r_sum_other"].format(s=stored), "warn"))
