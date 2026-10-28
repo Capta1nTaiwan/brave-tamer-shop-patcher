@@ -32,6 +32,7 @@ Adds the card to **all six** shop stock lists — one per story stage — **with
 
 - Your original ROM is never modified; a patched copy is written alongside it.
 - The input file is verified first (size, header, checksum, card data, shop table structure). A wrong game or an already-patched file is refused.
+- Fan-translated ROMs are supported: a stale header checksum only produces a warning and is fixed when patching.
 - The WonderSwan header checksum is recomputed, so the ROM stays valid.
 - About **636 bytes** change in total.
 - Patched ROMs remain compatible with existing save files.
@@ -135,6 +136,7 @@ Licensed under the [MIT License](LICENSE).
 
 - 原始 ROM 不會被改動，會另外輸出一個新檔案。
 - 會先驗證輸入檔（大小、檔頭、檢查碼、卡片資料、商店表結構），不是目標遊戲或已改過的檔案會直接拒絕。
+- 支援漢化版 ROM：若檔頭檢查碼沒有更新，只會顯示警告，修改時會自動修正。
 - 自動重算 WonderSwan 檔頭檢查碼，ROM 依然有效。
 - 實際改動約 **636 bytes**。
 - 修改後的 ROM 與原版存檔相容。

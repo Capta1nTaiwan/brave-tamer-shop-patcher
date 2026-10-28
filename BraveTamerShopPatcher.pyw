@@ -37,7 +37,7 @@ try:
 except ImportError:
     sys.exit("tkinter not found. Install the standard python.org build with tcl/tk enabled.")
 
-APP_VERSION = "1.1"
+APP_VERSION = "1.2"
 APP_AUTHOR = "William Lin"        # used in English UI / bilingual splash
 APP_AUTHOR_ZH = "淋浴"             # used in the Chinese UI
 

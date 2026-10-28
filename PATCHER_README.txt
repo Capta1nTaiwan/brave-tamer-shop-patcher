@@ -7,7 +7,7 @@
 ========================================================================
 
   Author : William Lin      作者：淋浴
-  Version 版本 : 1.1  (2026-08-30)
+  Version 版本 : 1.2  (2026-10-28)
 
   The program asks for a language (繁體中文 / English) when it starts.
   程式啟動時會先讓你選擇語言（繁體中文 / English）。
@@ -64,6 +64,8 @@
     請使用你自己合法取得的 ROM。
   * 工具會先驗證檔案（大小、檔頭、檢查碼、卡片資料、商店表結構），
     不是目標遊戲或已經改過的檔案會直接拒絕，不會破壞你的檔案。
+  * 漢化版 ROM 也可以使用：若檔頭檢查碼沒有被更新，只會顯示警告，
+    修改時會自動修正。
   * 建議先備份原始 ROM 和存檔。
   * 修改後的 ROM 與原版存檔相容。
   * 這個 exe 沒有數位簽章，Windows SmartScreen 可能會跳出藍色警告，
@@ -141,6 +143,8 @@
   * The file is verified first (size, header, checksum, card data, shop table
     structure). A wrong game or an already-patched file is refused, so your
     files cannot be damaged.
+  * Translated ROMs work too: a stale header checksum only shows a warning
+    and is fixed when patching.
   * Back up your ROM and save file first.
   * The patched ROM stays compatible with existing save files.
   * The exe is unsigned, so Windows SmartScreen may show a blue warning -
